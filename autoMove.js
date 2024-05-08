@@ -20,9 +20,7 @@ function calculateAngle1(recX, recY) {
 }
 
 
-function calculateAngle2(recX, recY) {
 
-}
 
 function autoMove() {
 
@@ -52,6 +50,10 @@ function autoMove() {
 	}
 }
 
-function autoMoveSecond() {
+function calculateAngle2(recX, recY) {
+	// calculate the Angle for the Second arm
+}
 
+function autoMoveSecond() {
+	// if condition that if true, sets rotateSecond = false; and returns
 }

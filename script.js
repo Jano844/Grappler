@@ -77,7 +77,5 @@ function gameloop() {
 		rendering();
 	}
 }
-
-calculateAngle2(260, 280);
 calculateAngle1(360, 280);
 gameloop();
