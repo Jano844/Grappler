@@ -1,0 +1,54 @@
+
+
+body {
+	background-color: rgb(3, 56, 81);
+}
+
+h1 {
+	margin-top: 20px;
+	text-align: center;
+	color: aqua;
+	font-size: 350%;
+	margin-left: 150px;
+}
+
+#main {
+	display: flex; /* Verwende Flexbox */
+	align-items: flex-start; /* Ausrichtung der Elemente am oberen Rand */
+}
+
+#Buttonline {
+	margin-left: 20px;
+	margin-top: 100px;
+	display: flex; /* Verwende Flexbox für die Buttonline */
+	flex-direction: column; /* Stapeln der Buttons in einer Spalte */
+	align-items: center; /* Ausrichtung der Buttons am linken Rand */
+	margin-right: 20px; /* Abstand zwischen Buttonline und Canvas */
+	height: 600px;
+}
+
+
+b1 {
+	display: flex; /* Verwende Flexbox */
+	justify-content: center; /* Zentriere den Text horizontal */
+	align-items: center; /* Zentriere den Text vertikal */
+	width: 150px;
+	background-color: #104d64;
+	height: 80px;
+	color: rgb(220, 220, 220);
+	font-size: 20px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+b1:hover {
+	background-color: #0d3d4f;
+}
+
+canvas {
+	border: 1px solid rgb(0, 0, 0); /* Adds a border around the canvas */
+	background-color: gray; /* Sets background color */
+	margin: auto;
+	margin-top: 100px;
+	display: block; /* Ensures canvas is treated as a block element */
+}
