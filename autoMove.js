@@ -80,16 +80,28 @@ function autoMoveSecond() {
 	var vecLen = Math.sqrt(Math.pow(vecx, 2) + Math.pow(vecy, 2));
 	console.log("vecLen", vecLen);
 
-	if (vecLen < 5) {
+	if (vecLen < 3) {
 		console.log("finished");
 		rotateSecond = false;
 		return ;
 	}
 
+	var speed = 0.1;
+	if (vecLen > 100)
+		speed = speed * 10;
+	else if (vecLen > 80)
+		speed = speed * 8;
+	else if (vecLen > 60)
+		speed = speed * 6;
+	else if (vecLen > 40)
+		speed = speed * 4;
+	else if (vecLen > 20)
+		speed = speed * 2;
+
 	if (Grappler.rotationAngle < destPhi + 180) {
-		Grappler.rotationAngle = Grappler.rotationAngle + 0.4;
+		Grappler.rotationAngle = Grappler.rotationAngle + speed;
 	}
 	else {
-		Grappler.rotationAngle = Grappler.rotationAngle - 0.4;
+		Grappler.rotationAngle = Grappler.rotationAngle - speed;
 	}
 }
