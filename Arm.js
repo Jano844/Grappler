@@ -38,8 +38,8 @@ var BaseArm = {
 	width: 75,
 	height: 250,
 	roundAngle: 40,
-	// for testing normal value = 0 testint 20.4
-	rotationAngle: 43.16,
+	// for testing normal value = 0
+	rotationAngle: 0,
 	vecCircles: 250 - 75
 };
 
@@ -55,7 +55,7 @@ var Grappler = {
 	height: 250,
 	roundAngle: 40,
 	// for testing nurmal value = 180
-	rotationAngle: 180 + 180,
+	rotationAngle: 180,
 	xDir: Rotationpoint.x + BaseArm.vecCircles * Math.sin(inRadian(BaseArm.rotationAngle)),
 	yDir: Rotationpoint.y - BaseArm.vecCircles * Math.cos(inRadian(BaseArm.rotationAngle)),
 };
@@ -94,6 +94,7 @@ function updateArm(direction) {
 	if (direction === "Right")
 		Grappler.rotationAngle = Grappler.rotationAngle		+ 2;
 	if (direction == "Space") {
+		SpacePressed = true;
 		autoMove();
 	}
 }

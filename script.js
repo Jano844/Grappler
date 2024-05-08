@@ -31,8 +31,8 @@ document.addEventListener('keydown', function(event) {
 });
 
 function drawRectangle() {
-	var recX = 350;
-	var recY = 250;
+	var recX = 360;
+	var recY = 280;
 	var rectangle = new Path.Rectangle({
 		point: [recX - 15, recY - 15], // Position des oberen linken Ecks
 		size: [30, 30], // Breite und Höhe
@@ -45,36 +45,21 @@ function drawRectangle() {
 	drawCircle(recX, recY, BaseArm.vecCircles, 1);
 	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
 
-	var directionX = Math.abs(Rotationpoint.x - recX);
-	var directionY = Math.abs(Rotationpoint.y - recY);
-
-
-	var len = Math.sqrt(Math.pow(directionX, 2) + Math.pow(directionY, 2)) / 2; // len Zwischen startPunkt und MittelPunkt
-	var MittelPunktX = (Rotationpoint.x + recX) / 2
-	var MittelPunktY = (Rotationpoint.y + recY) / 2
-
-
-	var phi = Math.acos(directionY / (len * 2)) * 180 / Math.PI;
-	var phi2 = Math.acos(len / BaseArm.vecCircles) * 180 / Math.PI;
-
-	console.log("Phi 1: ", phi2 + phi);
-	console.log(MittelPunktX);
-	console.log(MittelPunktY);
-
-
-
-	drawCircle(MittelPunktX, MittelPunktY, 8, 0);
-
 	return rectangle;
 }
 
+var SpacePressed = false;
+var rotateSecond = false;
 
 function drawObject() {
 
 }
 
 function update() {
-	
+	if (SpacePressed == true)
+		autoMove();
+	if (rotateSecond == true)
+		autoMoveSecond();
 }
 
 function rendering() {
@@ -93,4 +78,6 @@ function gameloop() {
 	}
 }
 
+calculateAngle2(260, 280);
+calculateAngle1(360, 280);
 gameloop();
