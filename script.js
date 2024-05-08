@@ -30,11 +30,13 @@ document.addEventListener('keydown', function(event) {
 	}
 });
 
+var rectGrab = {
+	recX: 360,
+	recY: 280,
+}
 function drawRectangle() {
-	var recX = 360;
-	var recY = 280;
 	var rectangle = new Path.Rectangle({
-		point: [recX - 15, recY - 15], // Position des oberen linken Ecks
+		point: [rectGrab.recX - 15, rectGrab.recY - 15], // Position des oberen linken Ecks
 		size: [30, 30], // Breite und Höhe
 		fillColor: "black", // Füllfarbe
 	});
@@ -42,7 +44,7 @@ function drawRectangle() {
 
 
 
-	drawCircle(recX, recY, BaseArm.vecCircles, 1);
+	drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
 	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
 
 	return rectangle;
@@ -77,5 +79,5 @@ function gameloop() {
 		rendering();
 	}
 }
-calculateAngle1(360, 280);
+calculateAngle1(rectGrab.recX, rectGrab.recY);
 gameloop();

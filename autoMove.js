@@ -30,30 +30,66 @@ function autoMove() {
 	if (DeltaPhiOne < 1 || DeltaPhiTwo < 1) {
 		SpacePressed = false;
 		rotateSecond = true;
-		calculateAngle2(360, 280);
+		calculateAngle2(rectGrab.recX, rectGrab.recY);
 		return ;
 	}
 
 	if (DeltaPhiOne < DeltaPhiTwo)
 	{
-		if (BaseArm.rotationAngle < rotateTo.Basefirst)
+		if (BaseArm.rotationAngle < rotateTo.Basefirst) {
 			BaseArm.rotationAngle = BaseArm.rotationAngle + 0.4;
-		else
+			Grappler.rotationAngle = Grappler.rotationAngle + 0.4;
+
+		}
+		else {
 			BaseArm.rotationAngle = BaseArm.rotationAngle - 0.4;
+			Grappler.rotationAngle = Grappler.rotationAngle - 0.4;
+		}
 	}
 	else
 	{
-		if (BaseArm.rotationAngle < rotateTo.BaseSecond)
+		if (BaseArm.rotationAngle < rotateTo.BaseSecond) {
 			BaseArm.rotationAngle = BaseArm.rotationAngle + 0.4;
-		else
+			Grappler.rotationAngle = Grappler.rotationAngle + 0.4;
+		}
+		else {
 			BaseArm.rotationAngle = BaseArm.rotationAngle - 0.4;
+			Grappler.rotationAngle = Grappler.rotationAngle - 0.4;
+		}
 	}
 }
 
 function calculateAngle2(recX, recY) {
 	// calculate the Angle for the Second arm
+	var DeltaY = Math.abs(recY - Grappler.yDir);
+	var DeltaX = Math.abs(recX - Grappler.xDir);
+
+	var phi = Math.acos(Math.abs(DeltaY) / BaseArm.vecCircles) * 180 / Math.PI;
+	if (phi == 'nan')
+		phi = Math.asin(Math.abs(DeltaX) / BaseArm.vecCircles) * 180 / Math.PI;
+	return phi;
 }
 
 function autoMoveSecond() {
 	// if condition that if true, sets rotateSecond = false; and returns
+	var destPhi = calculateAngle2(rectGrab.recX, rectGrab.recY);
+
+	var vecx = Math.abs(rectGrab.recX - Grappler.lastx);
+	var vecy = Math.abs(rectGrab.recY - Grappler.lasty);
+
+	var vecLen = Math.sqrt(Math.pow(vecx, 2) + Math.pow(vecy, 2));
+	console.log("vecLen", vecLen);
+
+	if (vecLen < 5) {
+		console.log("finished");
+		rotateSecond = false;
+		return ;
+	}
+
+	if (Grappler.rotationAngle < destPhi + 180) {
+		Grappler.rotationAngle = Grappler.rotationAngle + 0.4;
+	}
+	else {
+		Grappler.rotationAngle = Grappler.rotationAngle - 0.4;
+	}
 }

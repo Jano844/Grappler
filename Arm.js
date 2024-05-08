@@ -58,6 +58,10 @@ var Grappler = {
 	rotationAngle: 180,
 	xDir: Rotationpoint.x + BaseArm.vecCircles * Math.sin(inRadian(BaseArm.rotationAngle)),
 	yDir: Rotationpoint.y - BaseArm.vecCircles * Math.cos(inRadian(BaseArm.rotationAngle)),
+
+
+	lastx: 0,
+	lasty: 0,
 };
 
 function drawCircles() {
@@ -73,6 +77,9 @@ function drawCircles() {
 	var cx = Grappler.xDir + BaseArm.vecCircles * Math.sin(inRadian(Grappler.rotationAngle - 180));
 	var cy = Grappler.yDir + BaseArm.vecCircles * Math.cos(inRadian(Grappler.rotationAngle));
 
+	Grappler.lastx = cx;
+	Grappler.lasty = cy;
+	
 	drawCircle(cx, cy, 5, 0);
 	drawCircle(cx, cy, 75 / 2, 1);
 	drawCircle(Grappler.xDir, Grappler.yDir, 5, 0);
