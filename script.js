@@ -28,13 +28,17 @@ document.addEventListener('keydown', function(event) {
 	if(event.key === " ") {
 		updateArm("Space")
 	}
+	if (event.key === "Enter") {
+		enterPressed();
+	}
 });
 
 var rectGrab = {
-	recX: 460,
-	recY: 250,
+	recX:  260,
+	recY: 150,
 }
-function drawRectangle() {
+
+function test() {
 	var rectangle = new Path.Rectangle({
 		point: [rectGrab.recX - 15, rectGrab.recY - 15], // Position des oberen linken Ecks
 		size: [30, 30], // Breite und Höhe
@@ -44,9 +48,9 @@ function drawRectangle() {
 
 
 
-	drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
-	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
-	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1);
+	// drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
+	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
+	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1);
 
 	return rectangle;
 }
@@ -64,12 +68,14 @@ function update() {
 		MoveFirst();
 	if (rotateSecond == true)
 		MoveSecond();
+	updateBox();
 }
 
 function rendering() {
 	project.activeLayer.removeChildren();
+
+	drawAssemblyLine();
 	drawArm();
-	drawRectangle();
 }
 
 function gameloop() {
