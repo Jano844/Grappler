@@ -31,8 +31,8 @@ document.addEventListener('keydown', function(event) {
 });
 
 var rectGrab = {
-	recX: 360,
-	recY: 280,
+	recX: 460,
+	recY: 250,
 }
 function drawRectangle() {
 	var rectangle = new Path.Rectangle({
@@ -46,22 +46,24 @@ function drawRectangle() {
 
 	drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
 	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
+	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1);
 
 	return rectangle;
 }
 
-var SpacePressed = false;
+var rotateFirst = false;
 var rotateSecond = false;
+var rotateDone = false;
 
 function drawObject() {
 
 }
 
 function update() {
-	if (SpacePressed == true)
-		autoMove();
+	if (rotateFirst == true)
+		MoveFirst();
 	if (rotateSecond == true)
-		autoMoveSecond();
+		MoveSecond();
 }
 
 function rendering() {
@@ -79,5 +81,6 @@ function gameloop() {
 		rendering();
 	}
 }
-calculateAngle1(rectGrab.recX, rectGrab.recY);
+
+
 gameloop();

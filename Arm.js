@@ -34,13 +34,13 @@ function inRadian(angle) {
 
 var BaseArm = {
 	x: 200,
-	y: 340,
+	y: 290,
 	width: 75,
-	height: 250,
+	height: 300,
 	roundAngle: 40,
 	// for testing normal value = 0
 	rotationAngle: 0,
-	vecCircles: 250 - 75
+	vecCircles: 300 - 75
 };
 
 var Rotationpoint = {
@@ -52,7 +52,7 @@ var Grappler = {
 	x: Rotationpoint.x + BaseArm.vecCircles * Math.sin(inRadian(BaseArm.rotationAngle)) - BaseArm.width / 2,
 	y: Rotationpoint.y - BaseArm.vecCircles * Math.cos(inRadian(BaseArm.rotationAngle)) - BaseArm.width / 2,
 	width: 75,
-	height: 250,
+	height: 300,
 	roundAngle: 40,
 	// for testing nurmal value = 180
 	rotationAngle: 180,
@@ -101,8 +101,7 @@ function updateArm(direction) {
 	if (direction === "Right")
 		Grappler.rotationAngle = Grappler.rotationAngle		+ 2;
 	if (direction == "Space") {
-		SpacePressed = true;
-		autoMove();
+		rotateFirst = true;
 	}
 }
 
