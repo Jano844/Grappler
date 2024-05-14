@@ -28,8 +28,14 @@ document.addEventListener('keydown', function(event) {
 	if(event.key === " ") {
 		updateArm("Space")
 	}
-	if (event.key === "Enter") {
+	if (event.key === "Enter")
 		enterPressed();
+
+	if (event.key === "s") {
+		if (StopTopLine == true)
+			StopTopLine = false;
+		else
+			StopTopLine = true;
 	}
 });
 
@@ -50,11 +56,12 @@ function test() {
 
 	// drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
 	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
-	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1);
+	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1); 
 
 	return rectangle;
 }
 
+var StopTopLine = false;
 var rotateFirst = false;
 var rotateSecond = false;
 var rotateDone = false;
@@ -63,18 +70,23 @@ function drawObject() {
 
 }
 
+var frames = 0;
 function update() {
+	if (StopTopLine == false)
+		frames++;
 	if (rotateFirst == true)
 		MoveFirst();
 	if (rotateSecond == true)
 		MoveSecond();
 	updateBox();
+	updateTopLine(frames);
 }
 
 function rendering() {
 	project.activeLayer.removeChildren();
 
 	drawAssemblyLine();
+	drawTopLineObjects();
 	drawArm();
 }
 

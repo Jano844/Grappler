@@ -22,7 +22,7 @@ function drawLine(x, y, width, height, color, outline) {
 }
 
 
-
+// Create and store the boxes
 var boxes = [];
 
 for (var i = 0; i < 5; i++) {
@@ -40,7 +40,7 @@ for (var i = 0; i < 5; i++) {
 	boxes.push(newBox);
 }
 
-var shapeHeight = {
+var shapeBoxHeight = {
 	rectangle: 320,
 	circle: 385,
 	triangle: 389,
@@ -145,6 +145,7 @@ function updateBox() {
 		}
 	}
 }
+// Finished Boxes
 
 function drawAssemblyLine() {
 	drawLine(line.posx, line.posy, line.width, line.height, new Color('#3a3a3a'), true);
@@ -158,6 +159,7 @@ function drawAssemblyLine() {
 	drawFullBox();
 }
 
+// testing with enter key to let one box move
 var count = 0;
 function enterPressed() {
 	boxes[count].filledup = true;
