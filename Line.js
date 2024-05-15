@@ -34,7 +34,11 @@ for (var i = 0; i < 5; i++) {
 		Rectangle: null,
 		Shape: null,
 		boxPos: 800,
-		filledup: false
+		filledup: false,
+		RectColor: "0",
+		CircleColor: "0",
+		TriColor: "0",
+		ShapeColor: "0"
 	};
 	
 	boxes.push(newBox);
@@ -53,6 +57,7 @@ dist = 150;
 // box
 function drawBox() {
 	for (var i = 0; i < 5; i++) {
+	
 		var rectangle = new Path.Rectangle({
 			point: [(boxes[i].boxPos + i * dist) - 10, 310], // Position des oberen linken Ecks
 			size: [100, 100], // Breite und Höhe
@@ -66,10 +71,15 @@ function drawBox() {
 // rectangle
 function drawRectangle() {
 	for (var i = 0; i < 5; i++) {
+
+		var rectCol = 'white';
+		if (boxes[i].RectColor == "red")
+			rectCol = "red";
+
 		var rectangle = new Path.Rectangle({
 			point: [boxes[i].boxPos + i * dist, 320], // Position des oberen linken Ecks
 			size: [30, 30], // Breite und Höhe
-			fillColor: "white", // Füllfarbe
+			fillColor: rectCol, // Füllfarbe
 		});
 		boxes[i].Rectangle = rectangle;
 	}
@@ -78,10 +88,15 @@ function drawRectangle() {
 // circle
 function drawBoxCircle() {
 	for (var i = 0; i < 5; i++) {
+
+		var circleCol = 'white';
+		if (boxes[i].CircleColor == "green")
+			circleCol = "green";
+	
 		var circle = new Path.Circle({
 			center: [(boxes[i].boxPos + i * dist) + 15, 385], // Center of the circle
 			radius: 17, // Radius of the circle
-			fillColor: 'white' // Fill color of the circle
+			fillColor: circleCol // Fill color of the circle
 		});
 		boxes[i].Circle = circle;
 	}
@@ -92,11 +107,16 @@ function drawBoxCircle() {
 // triangle
 function drawBoxTriangle() {
 	for (var i = 0; i < 5; i++) {
+
+		var triCol = 'white';
+		if (boxes[i].TriColor == "blue")
+			triCol = "blue";
+
 		var triangle = new Path.RegularPolygon({
 		center: [(boxes[i].boxPos + i * dist) + 65, 389],
 		sides: 3,
 		radius: 17,
-		fillColor: 'white',
+		fillColor: triCol,
 		});
 		boxes[i].Triangle = triangle;
 	}
@@ -105,11 +125,16 @@ function drawBoxTriangle() {
 // shape
 function drawBoxShape() {
 	for (var i = 0; i < 5; i++) {
+		
+		var shapeCol = 'white';
+		if (boxes[i].ShapeColor == "cyan")
+			shapeCol = "cyan";
+
 		var triangle = new Path.RegularPolygon({
 			center: [(boxes[i].boxPos + i * dist) + 65, 335],
 			sides: 8,
 			radius: 17,
-			fillColor: 'white',
+			fillColor: shapeCol,
 		});
 		boxes[i].Shape = triangle;
 	}
@@ -123,6 +148,8 @@ function drawFullBox() {
 	drawBoxShape();
 }
 
+var Boxesmoving = true;
+
 function updateBox() {
 
 	var startPos = 300;
@@ -134,13 +161,18 @@ function updateBox() {
 	for (var i = 0; i < 5; i++) {
 		if (boxes[i].filledup == true)
 			boxes[i].boxPos -= 3;
-		else if (boxes[i].boxPos > startPos)
+		else if (boxes[i].boxPos > startPos) {
 			boxes[i].boxPos -= 3;
+			Boxesmoving = true;
+		}
+		else
+			Boxesmoving = false;
 	}
 
 	if (boxes[4].boxPos < -800) {
 		for (var i = 0; i < 5; i++) {
 			boxes[i].filledup = false;
+			boxes[i].CircleColor = "0";
 			boxes[i].boxPos = 800;
 		}
 	}

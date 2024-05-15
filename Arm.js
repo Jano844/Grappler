@@ -100,9 +100,6 @@ function updateArm(direction) {
 		Grappler.rotationAngle = Grappler.rotationAngle		- 2;
 	if (direction === "Right")
 		Grappler.rotationAngle = Grappler.rotationAngle		+ 2;
-	if (direction == "Space") {
-		rotateFirst = true;
-	}
 }
 
 function drawArm() {

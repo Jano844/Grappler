@@ -105,13 +105,14 @@ function MoveSecond() {
 		speed = speed * 2;
 
 
-	console.log(vecLen);
-	console.log(destPhi + 180);
+	// console.log(vecLen);
+	// console.log(destPhi + 180);
 
 	if (vecLen < 1) {
-		console.log("finished");
+		// console.log("finished");
 		rotateSecond = false;
 		rotateDone = true;
+		startRotating = false;
 		rotateTo.dir = 0;
 		return ;
 	}
@@ -127,3 +128,26 @@ function MoveSecond() {
 	else
 		Grappler.rotationAngle = Grappler.rotationAngle - speed;
 }
+
+
+// function autoMove() {
+// 	startRotating = true;
+// 	var i = 0;
+// 	while (startRotating == true)
+// 	{
+// 		if (rotateFirst == true)
+// 			MoveFirst();
+// 		if (rotateSecond == true)
+// 			MoveSecond();
+// 		console.log("AutoMove");
+// 		drawArm();
+// 		// i++;
+// 		// if (i > 1000)
+// 		// 	break;
+// 		// await delay(10);
+// 	}
+// 	rotateDone = true;
+// 	rotateFirst = false;
+// 	rotateSecond = false;
+// 	startRotating = false;
+// }
