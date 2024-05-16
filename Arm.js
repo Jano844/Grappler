@@ -8,8 +8,8 @@ function drawRoundedRect(x, y, width, height, radius) {
 		size: [width, height],
 		radius: radius,
 		strokeColor: 'black',
-		fillColor: 'blue',
 	});
+	rectangleOne.fillColor =  new Color('#FED000');
 	return rectangleOne;
 }
 
@@ -33,14 +33,14 @@ function inRadian(angle) {
 }
 
 var BaseArm = {
-	x: 200,
-	y: 340,
-	width: 75,
-	height: 250,
-	roundAngle: 40,
+	x: 150,
+	y: 290,
+	width: 55,
+	height: 300,
+	roundAngle: 30,
 	// for testing normal value = 0
 	rotationAngle: 0,
-	vecCircles: 250 - 75
+	vecCircles: 300 - 55
 };
 
 var Rotationpoint = {
@@ -51,9 +51,9 @@ var Rotationpoint = {
 var Grappler = {
 	x: Rotationpoint.x + BaseArm.vecCircles * Math.sin(inRadian(BaseArm.rotationAngle)) - BaseArm.width / 2,
 	y: Rotationpoint.y - BaseArm.vecCircles * Math.cos(inRadian(BaseArm.rotationAngle)) - BaseArm.width / 2,
-	width: 75,
-	height: 250,
-	roundAngle: 40,
+	width: 55,
+	height: 300,
+	roundAngle: 30,
 	// for testing nurmal value = 180
 	rotationAngle: 180,
 	xDir: Rotationpoint.x + BaseArm.vecCircles * Math.sin(inRadian(BaseArm.rotationAngle)),
@@ -81,9 +81,9 @@ function drawCircles() {
 	Grappler.lasty = cy;
 	
 	drawCircle(cx, cy, 5, 0);
-	drawCircle(cx, cy, 75 / 2, 1);
+	// drawCircle(cx, cy, 75 / 2, 1);
 	drawCircle(Grappler.xDir, Grappler.yDir, 5, 0);
-	drawCircle(Grappler.xDir, Grappler.yDir, 74 / 2, 1);
+	// drawCircle(Grappler.xDir, Grappler.yDir, 74 / 2, 1);
 }
 
 
@@ -100,10 +100,6 @@ function updateArm(direction) {
 		Grappler.rotationAngle = Grappler.rotationAngle		- 2;
 	if (direction === "Right")
 		Grappler.rotationAngle = Grappler.rotationAngle		+ 2;
-	if (direction == "Space") {
-		SpacePressed = true;
-		autoMove();
-	}
 }
 
 function drawArm() {

@@ -2,6 +2,11 @@
 paper.install(window);
 paper.setup('gameCanvas');
 
+
+// defines
+const Roundung = 30;
+
+
 // // Get the canvas element
 // var canvas = document.getElementById('gameCanvas');
 
@@ -26,48 +31,78 @@ document.addEventListener('keydown', function(event) {
 		updateArm("Right");
 	}
 	if(event.key === " ") {
-		updateArm("Space")
+		if (StopTopLine == true) {
+			rotateDone = false;
+			rotateFirst = true;
+			autoMove();
+		}
+	}
+	if (event.key === "Enter")
+		enterPressed();
+
+	if (event.key === "s") {
+		if (StopTopLine == true && startRotating == false)
+			StopTopLine = false;
+		else {
+			StopTopLine = true;
+			grabShape("rect");
+		}
 	}
 });
 
 var rectGrab = {
-	recX: 360,
-	recY: 280,
-}
-function drawRectangle() {
-	var rectangle = new Path.Rectangle({
-		point: [rectGrab.recX - 15, rectGrab.recY - 15], // Position des oberen linken Ecks
-		size: [30, 30], // Breite und Höhe
-		fillColor: "black", // Füllfarbe
-	});
-
-
-
-
-	drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
-	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
-
-	return rectangle;
+	recX:  260,
+	recY: 150,
 }
 
-var SpacePressed = false;
+function test() {
+	// var rectangle = new Path.Rectangle({
+	// 	point: [350, 50], // Position des oberen linken Ecks
+	// 	size: [30, 30], // Breite und Höhe 
+	// 	fillColor: "black", // Füllfarbe
+	// });
+
+
+
+
+	// drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
+	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
+	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1); 
+
+	// return rectangle;
+}
+
+var startRotating = false;
+
+
+var StopTopLine = false;
+var rotateFirst = false;
 var rotateSecond = false;
+var rotateDone = false;
 
 function drawObject() {
 
 }
 
+var frames = 0;
 function update() {
-	if (SpacePressed == true)
-		autoMove();
+	if (StopTopLine == false)
+		frames++;
+	if (rotateFirst == true)
+		MoveFirst();
 	if (rotateSecond == true)
-		autoMoveSecond();
+		MoveSecond();
+	updateBox();
+	updateTopLine(frames);
 }
 
 function rendering() {
 	project.activeLayer.removeChildren();
+
+	drawAssemblyLine();
+	drawTopLineObjects();
 	drawArm();
-	drawRectangle();
+	test();
 }
 
 function gameloop() {
@@ -79,5 +114,6 @@ function gameloop() {
 		rendering();
 	}
 }
-calculateAngle1(rectGrab.recX, rectGrab.recY);
+
+
 gameloop();
