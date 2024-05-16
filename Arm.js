@@ -37,7 +37,7 @@ var BaseArm = {
 	y: 290,
 	width: 55,
 	height: 300,
-	roundAngle: 40,
+	roundAngle: 30,
 	// for testing normal value = 0
 	rotationAngle: 0,
 	vecCircles: 300 - 55
@@ -53,7 +53,7 @@ var Grappler = {
 	y: Rotationpoint.y - BaseArm.vecCircles * Math.cos(inRadian(BaseArm.rotationAngle)) - BaseArm.width / 2,
 	width: 55,
 	height: 300,
-	roundAngle: 40,
+	roundAngle: 30,
 	// for testing nurmal value = 180
 	rotationAngle: 180,
 	xDir: Rotationpoint.x + BaseArm.vecCircles * Math.sin(inRadian(BaseArm.rotationAngle)),

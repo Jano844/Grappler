@@ -2,6 +2,11 @@
 paper.install(window);
 paper.setup('gameCanvas');
 
+
+// defines
+const Roundung = 30;
+
+
 // // Get the canvas element
 // var canvas = document.getElementById('gameCanvas');
 

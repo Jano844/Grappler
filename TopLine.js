@@ -206,7 +206,7 @@ function put_in_box(shape) {
 		rotateDone = false;
 		rectGrab.recX = boxes[i].Rectangle.position.x;
 		rectGrab.recY = boxes[i].Rectangle.position.y;
-		
+		boxes[i].RectColor = "red";
 		// start
 	} else if (shape == "circle") {
 		boxes[i].CircleColor = "green";
