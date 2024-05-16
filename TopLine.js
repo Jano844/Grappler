@@ -34,7 +34,7 @@ function addNewShape(rand) {
 		boxPos: 800,
 		centerX: 15,
 	};
-	
+
 	Shapes.push(newShape);
 }
 
@@ -73,7 +73,7 @@ function drawTopLineTriangle(i) {
 	Shapes[i].Shape = triangle;
 	Shapes[i].id = "triangle";
 }
-function drawTopLineShape(i) { 
+function drawTopLineShape(i) {
 	if (Shapes[i].id != "shape")
 		return ;
 	var triangle = new Path.RegularPolygon({
@@ -120,8 +120,12 @@ function updateTopLine(frames) {
 		if (Shapes[i].boxPos < -30 || Shapes[i].pickedup == true) {
 			deleteShapeAtIndex(i);
 		}
-		if (Shapes[i].boxPos > 0 && Shapes[i].boxPos < 360) {
-			Shapes[i].in_grab_range = true;
+		if (Shapes[i].boxPos > 0 && Shapes[i].boxPos < 500) {
+			vecX = Math.abs(Rotationpoint.x - Shapes[i].Shape.position.x);
+			vecY = Math.abs(Rotationpoint.y - Shapes[i].Shape.position.y);
+			var dist = Math.sqrt(vecX * vecX + vecY * vecY);
+			if (dist < (BaseArm.vecCircles * 2))
+				Shapes[i].in_grab_range = true;
 		}
 	}
 }

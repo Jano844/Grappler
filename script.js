@@ -34,7 +34,7 @@ document.addEventListener('keydown', function(event) {
 		if (StopTopLine == true) {
 			rotateDone = false;
 			rotateFirst = true;
-			autoMove();
+			// autoMove();
 		}
 	}
 	if (event.key === "Enter")
@@ -58,7 +58,7 @@ var rectGrab = {
 function test() {
 	// var rectangle = new Path.Rectangle({
 	// 	point: [350, 50], // Position des oberen linken Ecks
-	// 	size: [30, 30], // Breite und Höhe 
+	// 	size: [30, 30], // Breite und Höhe
 	// 	fillColor: "black", // Füllfarbe
 	// });
 
@@ -67,7 +67,7 @@ function test() {
 
 	// drawCircle(rectGrab.recX, rectGrab.recY, BaseArm.vecCircles, 1);
 	// drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles, 1);
-	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1); 
+	drawCircle(Rotationpoint.x, Rotationpoint.y, BaseArm.vecCircles * 2, 1);
 
 	// return rectangle;
 }
